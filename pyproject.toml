@@ -1,0 +1,72 @@
+[tool.poetry]
+name = "sixt-challange"
+version = "0.1.0"
+description = ""
+authors = ["carlo.voss <carlo.voss@me.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pandas = "^2.2.1"
+seaborn = "^0.13.2"
+scikit-learn = "^1.4.1"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+black = {extras = ["jupyter"], version = "^22.12.0"}
+flake8 = "5.0.4"
+flake8-bugbear = "22.10.27"
+isort = "^5.11.4"
+poethepoet = "^0.17.1"
+pyproject-flake8 = "5.0.4"
+
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.group.test.dependencies]
+moto = "^4.1.0"
+pytest = "^7.2.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.flake8]
+max-line-length = 119
+max-complexity = 10
+select = ["C", "E", "F", "W", "B", "B950"]
+ignore = ["E203", "E501", "W503"]
+exclude = [
+    ".git",
+    ".gitignore",
+    "__pycache__",
+    "*.egg-info",
+    ".nox",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".venv",
+    "venv",
+    ".vscode",
+    ".idea",
+]
+
+[tool.black]
+line-length = 119
+
+[tool.isort]
+line_length = 88
+profile = "black"
+skip_gitignore = true
+
+[tool.poe.tasks]
+format = {cmd = "black .", help = "Check code style and perform formatting"}
+format_imports = {cmd = "isort .", help = "Beautify import formatting"}
+lint = {cmd = "pflake8 .", help = "Perform linting on your code"}
+format_and_lint = ["format", "format_imports", "lint"]
+
+[tool.pytest.ini_options]
+testpaths = [
+  "tests",
+]
