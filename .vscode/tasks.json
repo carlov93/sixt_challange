@@ -1,0 +1,19 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Open Jupyter Root Directory",
+            "type": "shell",
+            "command": "cd /Users/carlo.voss/vscode/SIXT_CHALLANGE/ && jupyter notebook",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
