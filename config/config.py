@@ -21,6 +21,8 @@ class PreprocessingConfig(Config):
     name = "preprocessing"
     params: preprocessing_params = field(
         default_factory=lambda: {
+            'columns_to_drop': ['dteday','instant', 'yr'],
+            'numerical_columns': ['temp', 'atemp', 'hum', 'windspeed'],
         }
     )
 
@@ -30,6 +32,7 @@ class FeatureEngineeringConfig(Config):
     name = "feature_engineering"
     params: feature_engineering_params = field(
         default_factory=lambda: {
+            'cat_columns': ['season', 'weathersit', 'weekday', 'mnth', 'holiday', 'workingday'],
         }
     )
 
@@ -39,6 +42,8 @@ class ModelTrainingConfig(Config):
     name = "model_training"
     params: model_training_params = field(
         default_factory=lambda: {
+            'predictor_col': ['cnt', 'casual', 'registered'],
+            'test_size': 0.2,
             'n_estimators': [100, 200, 300],
             'max_depth': [None, 5, 10],
             'min_samples_split': [2, 5, 10],

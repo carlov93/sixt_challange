@@ -10,7 +10,8 @@ class ModelTrainingStep:
     @timed
     @pipeline_logging_config
     def run(self, df):
-        X_train, X_test, y_train, y_test = prepare_data_for_training(df)
+        X_train, X_test, y_train, y_test = prepare_data_for_training(df, self.config.predictor_col, self.config.test_size)
+        
         model = train_random_forest(
             X_train, 
             y_train, 
@@ -19,5 +20,7 @@ class ModelTrainingStep:
             self.config.min_samples_split, 
             self.config.min_samples_leaf
         )
+        
         score = evaluate_model(model, X_test, y_test)
+        
         return df

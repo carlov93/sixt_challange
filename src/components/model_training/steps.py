@@ -11,13 +11,17 @@ from sklearn.model_selection import GridSearchCV
 logger = logging.getLogger("bike_prediction")
 
 
-def prepare_data_for_training(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+def prepare_data_for_training(
+    df: pd.DataFrame, 
+    columns: List[str], 
+    test_size: float) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    
     #creating dimensions for Modelling
-    x_data = df.drop(['cnt', 'casual', 'registered'], axis=1)
+    x_data = df.drop(columns, axis=1)
     y_data = df['cnt']
     
     # First, split the data into training (80%) and the remaining (20%)
-    X_train, X_test, y_train, y_test = train_test_split(x_data, y_data, test_size=0.2, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(x_data, y_data, test_size=test_size, random_state=42)
     
     return X_train, X_test, y_train, y_test
     

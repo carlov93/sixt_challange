@@ -11,9 +11,9 @@ class PreprocessingStep:
     @timed
     @pipeline_logging_config
     def run(self, df: pd.DataFrame) -> pd.DataFrame:
-        df = drop_columns(df, self.config.columns)
+        df = drop_columns(df, self.config.columns_to_drop)
         df = drop_duplicates(df)
         df = type_casting(df)
-        df = delete_outliers(df)
+        df = delete_outliers(df, self.config.numerical_columns)
         
         return df
