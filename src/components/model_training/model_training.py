@@ -5,7 +5,7 @@ from src.util.util import timed, pipeline_logging_config
 
 class ModelTrainingStep:
     def __init__(self, config):
-        self.config = config.model_training_params
+        self.config = config.params
     
     @timed
     @pipeline_logging_config

@@ -6,7 +6,7 @@ from src.util.util import timed, pipeline_logging_config
 
 class PreprocessingStep:
     def __init__(self, config):
-        self.config = config.preprocessing_params
+        self.config = config.params
     
     @timed
     @pipeline_logging_config
