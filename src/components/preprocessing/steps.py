@@ -34,9 +34,7 @@ def delete_outliers(df: pd.DataFrame, columns: List[str]) -> pd.DataFrame:
         upper_bound = q3 + 1.5 * iqr
         
         outliers[column] = df[(df[column] < lower_bound) | (df[column] > upper_bound)]
-    
-    for column in columns:
+        
         df = df.drop(outliers[column].index)
-    
+         
     return df
-

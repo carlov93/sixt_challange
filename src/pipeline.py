@@ -19,6 +19,11 @@ logger.addHandler(s3_handler)
 
 
 def run_pipeline(df: pd.DataFrame):
+    """ This function runs the entire pipeline for training the bike prediction model.
+
+    Args:
+        df (pd.DataFrame): Raw DataFrame that should be used for training the bike prediction model
+    """
     # Load Configs
     preprocessing_config = PreprocessingConfig()
     feature_engineering_config = FeatureEngineeringConfig()

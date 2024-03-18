@@ -25,7 +25,7 @@ model_training_params = TypedDict(
     {
         'predictor_col': List[str],
         'test_size': float,
-        'n_estimators': [List[int]],
+        'n_estimators': List[int],
         'max_depth': List[int],
         'min_samples_split': List[int],
         'min_samples_leaf': List[int]
