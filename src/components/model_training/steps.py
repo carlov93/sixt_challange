@@ -22,6 +22,10 @@ def prepare_data_for_training(
     
     # First, split the data into training (80%) and the remaining (20%)
     X_train, X_test, y_train, y_test = train_test_split(x_data, y_data, test_size=test_size, random_state=42)
+    logger.info(f"shape of X_train: {X_train.shape}")
+    logger.info(f"shape of y_train: {y_train.shape}")
+    logger.info(f"shape of X_test: {X_test.shape}")
+    logger.info(f"shape of y_test: {y_test.shape}")
     
     return X_train, X_test, y_train, y_test
     
@@ -56,6 +60,7 @@ def train_random_forest(
 
     # Train a random forest model with the best parameters
     best_rf = RandomForestRegressor(**best_params)
+    logger.info(f"The best parameters are: {best_params}")
     best_rf.fit(X_train, y_train)
     
     return best_rf

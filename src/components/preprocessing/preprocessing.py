@@ -32,5 +32,5 @@ class PreprocessingStep:
         logger.info(f"Data before deleting outliers: {df.shape[0]}")
         df = delete_outliers(df, self.config['numerical_columns'])
         logger.info(f"Data after deleting outliers: {df.shape[0]}")
-        
+        logger.info(f"Size of the DataFrame after Preprocessing: {df.shape}")
         return df

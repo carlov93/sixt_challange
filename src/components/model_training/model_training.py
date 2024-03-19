@@ -1,4 +1,5 @@
 import logging
+import pandas as pd
 
 from src.components.model_training.steps import prepare_data_for_training, train_random_forest, evaluate_model
 from src.util.util import timed, pipeline_logging_config
@@ -13,14 +14,14 @@ class ModelTrainingStep:
     
     @timed
     @pipeline_logging_config
-    def run(self, df):
-        """_summary_
+    def run(self, df: pd.DataFrame) -> float:
+        """ This function runs the model training step of the pipeline.
 
         Args:
-            df (_type_): _description_
+            df (pd.DataFrame): Data ready for training the model
 
         Returns:
-            _type_: _description_
+            float: RMSE score of the trained model
         """
         logger.info("Starting Model Training")
         X_train, X_test, y_train, y_test = prepare_data_for_training(df, self.config['predictor_col'], self.config['test_size'])

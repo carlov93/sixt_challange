@@ -25,4 +25,5 @@ class FeatureEngineeringStep:
         """
         logger.info("Starting Feature Engineering")
         df = one_hot_encoding(df, self.config['cat_columns'])
+        logger.info(f"Size of the DataFrame after Feature Engineering: {df.shape}")
         return df
